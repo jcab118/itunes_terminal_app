@@ -1,0 +1,17 @@
+{
+  "name": "itunes_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "itunes_app.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "inquirer": "^4.0.0",
+    "pg": "^7.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
