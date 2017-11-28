@@ -1,3 +1,6 @@
+var pg = require('pg');
+var inquirer = require('inquirer');
+
 var dbUrl = {
 	user: process.argv.POSTGRES_USER,
 	password: process.argv.POSTGRES_PASSWORD,
@@ -22,7 +25,6 @@ var signUp = () => {
 			name: 'sign_choice',
 		},
 	]).then((sign) => {
-		// console.log(sign);
 		if (sign.sign_choice === "Sign Up") {
 			console.log("Welcome to iTunes");
 			inquirer.prompt([
@@ -42,7 +44,7 @@ var signUp = () => {
 					name: 'password',
 				}
 			]).then((signup) => {
-				pgClient.query('INSERT INTO users (name, username, password) VALUES ($1, $2, $3)', [signup.name, signup.username, signup.password], (err, result) => {
+				pgClient.query('INSERT INTO users (name, username, password) VALUES ($2, $3)', [signup.name, signup.username, signup.password], (err, result) => {
 					console.log('Thank you for signing up. Please sign in now');
 					signUp();
 				});
@@ -108,7 +110,7 @@ var signUp = () => {
 														console.log(song_id);
 													}
 												});
-												pgClient.query("INSERT INTO bought_songs (song_id, user_id) VALUES ($1, $2)", [result.rows[0].id, song_id], (errFour, resFour) => {
+												pgClient.query("INSERT INTO bought_songs (song_id, user_id) VALUES ($1, $2)", [result.rows[1].id, song_id], (errFour, resFour) => {
 													console.log("You bought a song!");
 										    	goBack();
 												});
